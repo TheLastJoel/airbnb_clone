@@ -4,8 +4,10 @@ import { redirect } from "next/navigation";
 import { list } from "postcss";
 import NoItems from "@/components/shared/NoItems";
 import ListingCard from "@/components/shared/ListingCard";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getListingData(userId: string) {
+    noStore();
     const listingData = await prisma.favourite.findMany({
         where: {
             userId: userId,
